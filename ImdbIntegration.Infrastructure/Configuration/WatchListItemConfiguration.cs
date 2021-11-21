@@ -10,6 +10,8 @@ namespace ImdbIntegration.Infrastructure.Configuration
         {
             builder.ToTable("WatchListItems");
 
+            builder.Property(x => x.FilmId).HasMaxLength(9);
+
             builder.HasKey(x => new { x.UserId, x.FilmId });
         }
     }

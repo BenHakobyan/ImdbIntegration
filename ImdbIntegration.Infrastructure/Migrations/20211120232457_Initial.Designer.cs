@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ImdbIntegration.Infrastructure.Migrations
 {
     [DbContext(typeof(ImdbContext))]
-    [Migration("20211120211553_Initial")]
+    [Migration("20211120232457_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,8 +26,9 @@ namespace ImdbIntegration.Infrastructure.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<int>("FilmId")
-                        .HasColumnType("int");
+                    b.Property<string>("FilmId")
+                        .HasColumnType("nvarchar(9)")
+                        .HasMaxLength(9);
 
                     b.Property<bool>("IsWatched")
                         .HasColumnType("bit");

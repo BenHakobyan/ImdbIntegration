@@ -1,9 +1,8 @@
 ﻿namespace ImdbIntegration.Application.Dtos
 {
-    public class WatchListItemDto
+    public class UserFilmDto : FilmDto
     {
         public int UserId { get; set; }
-        public string FilmId { get; set; }
         public bool IsWatched { get; set; }
     }
 }

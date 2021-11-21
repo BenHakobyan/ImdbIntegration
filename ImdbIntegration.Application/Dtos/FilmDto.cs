@@ -6,7 +6,7 @@ namespace ImdbIntegration.Application.Dtos
 {
     public class FilmDto
     {
-        public int FilmId { get; set; }
+        public string FilmId { get; set; }
         public string Name { get; set; }
 
     }

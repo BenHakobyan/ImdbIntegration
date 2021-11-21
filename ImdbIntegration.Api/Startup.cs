@@ -35,7 +35,7 @@ namespace ImdbIntegration.Api
 
             services.AddSwaggerGen(x =>
             {
-                x.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info { Title = "Imdb Integration" });
+                x.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Imdb Integration" });
             });
         }
 
@@ -66,8 +66,6 @@ namespace ImdbIntegration.Api
 
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Imdb Integration"));
-
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

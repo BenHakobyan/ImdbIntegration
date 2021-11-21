@@ -1,9 +1,6 @@
 ﻿using ImdbIntegration.Application.Dtos;
-using Microsoft.AspNetCore.Http;
+using ImdbIntegration.Application.Services;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ImdbIntegration.Api.Controllers
@@ -12,21 +9,35 @@ namespace ImdbIntegration.Api.Controllers
     [ApiController]
     public class WatchListsController : ControllerBase
     {
-        [HttpGet("user/{userId:int}")]
-        public async Task<IActionResult> GetByUserId(int userId)
+        private readonly IWatchListService watchListService;
+        public WatchListsController(IWatchListService watchListService)
         {
-            return Ok();
+            this.watchListService = watchListService;
+        }
+
+        [HttpGet("search/{expression}")]
+        public async Task<IActionResult> GetByExpression(string expression)
+        {
+            return Ok(await watchListService.GetByExpressionAsync(expression));
+        }
+
+        [HttpGet("user/{userId:int}")]
+        public async Task<IActionResult> GetUserWatchListById(int userId)
+        {
+            return Ok(await watchListService.GetUserWatchListByIdAsync(userId));
         }
 
         [HttpPatch("setstatus")]
         public async Task<IActionResult> SetStatus(WatchListItemDto watchListItem)
         {
+            await watchListService.SetStatusAsync(watchListItem);
             return Ok();
         }
 
         [HttpPost]
         public async Task<IActionResult> AddToWatchList(WatchListItemDto watchListItem)
         {
+            await watchListService.AddToWatchListAsync(watchListItem);
             return Ok();
         }
     }

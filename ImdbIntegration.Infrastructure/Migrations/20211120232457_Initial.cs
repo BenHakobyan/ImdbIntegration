@@ -12,7 +12,7 @@ namespace ImdbIntegration.Infrastructure.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<int>(nullable: false),
-                    FilmId = table.Column<int>(nullable: false),
+                    FilmId = table.Column<string>(maxLength: 9, nullable: false),
                     IsWatched = table.Column<bool>(nullable: false),
                     LastOffered = table.Column<DateTime>(nullable: true)
                 },
